@@ -1,26 +1,397 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================================
+   ARCHITECTURAL / BLUEPRINT DESIGN SYSTEM
+   Inspired by technical drawings, grid paper, and precision
+   ============================================================ */
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-code);
+  --font-heading: var(--font-display);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-safety: var(--safety);
+  --color-safety-foreground: var(--safety-foreground);
+  --color-construction: var(--construction);
+  --color-construction-foreground: var(--construction-foreground);
+  --color-grid: var(--grid);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-critical: var(--critical);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ─── Light Mode: Warm Cream / Paper ─── */
+:root {
+  /* Core Palette — Architectural Blueprint Light */
+  --background: #F5F1E8;         /* warm cream paper */
+  --foreground: #0E1B2C;         /* navy ink */
+  --card: #FFFCF5;               /* slightly lighter cream */
+  --card-foreground: #0E1B2C;
+  --popover: #FFFCF5;
+  --popover-foreground: #0E1B2C;
+  --primary: #0E1B2C;            /* navy – primary actions */
+  --primary-foreground: #F5F1E8;
+  --secondary: #E8E2D5;          /* muted warm */
+  --secondary-foreground: #0E1B2C;
+  --muted: #EDE8DC;
+  --muted-foreground: #5C6A7A;
+  --accent: #F5C518;             /* safety yellow */
+  --accent-foreground: #0E1B2C;
+  --destructive: #E85D04;        /* construction orange */
+  --border: #C4BAA2;             /* warm border */
+  --input: #DDD6C5;
+  --ring: #F5C518;
+
+  /* Custom tokens */
+  --safety: #F5C518;
+  --safety-foreground: #0E1B2C;
+  --construction: #E85D04;
+  --construction-foreground: #FFFFFF;
+  --grid: #DDD6C5;
+  --success: #2D6A4F;
+  --warning: #E9A820;
+  --critical: #C1292E;
+
+  /* Chart colors */
+  --chart-1: #0E1B2C;
+  --chart-2: #F5C518;
+  --chart-3: #E85D04;
+  --chart-4: #2D6A4F;
+  --chart-5: #5C6A7A;
+
+  --radius: 0.25rem;             /* sharp corners – architectural */
+
+  /* Sidebar */
+  --sidebar: #0E1B2C;
+  --sidebar-foreground: #E8E2D5;
+  --sidebar-primary: #F5C518;
+  --sidebar-primary-foreground: #0E1B2C;
+  --sidebar-accent: #162A42;
+  --sidebar-accent-foreground: #F5F1E8;
+  --sidebar-border: #1D3550;
+  --sidebar-ring: #F5C518;
+}
+
+/* ─── Dark Mode: Deep Navy / Technical ─── */
+.dark {
+  --background: #0A1220;
+  --foreground: #E8E2D5;
+  --card: #0E1B2C;
+  --card-foreground: #E8E2D5;
+  --popover: #0E1B2C;
+  --popover-foreground: #E8E2D5;
+  --primary: #F5C518;
+  --primary-foreground: #0E1B2C;
+  --secondary: #162A42;
+  --secondary-foreground: #E8E2D5;
+  --muted: #162A42;
+  --muted-foreground: #8A96A8;
+  --accent: #F5C518;
+  --accent-foreground: #0E1B2C;
+  --destructive: #E85D04;
+  --border: #1D3550;
+  --input: #1D3550;
+  --ring: #F5C518;
+
+  --safety: #F5C518;
+  --safety-foreground: #0E1B2C;
+  --construction: #E85D04;
+  --construction-foreground: #FFFFFF;
+  --grid: #162A42;
+  --success: #52B788;
+  --warning: #F5C518;
+  --critical: #E63946;
+
+  --chart-1: #F5C518;
+  --chart-2: #E85D04;
+  --chart-3: #52B788;
+  --chart-4: #8A96A8;
+  --chart-5: #E8E2D5;
+
+  --sidebar: #060D17;
+  --sidebar-foreground: #E8E2D5;
+  --sidebar-primary: #F5C518;
+  --sidebar-primary-foreground: #0E1B2C;
+  --sidebar-accent: #0E1B2C;
+  --sidebar-accent-foreground: #E8E2D5;
+  --sidebar-border: #1D3550;
+  --sidebar-ring: #F5C518;
+}
+
+/* ─── Base Styles ─── */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+  html {
+    @apply font-sans;
+  }
+
+  /* Tabular nums for all financial data */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Blueprint grid background pattern */
+  .bg-blueprint-grid {
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .bg-blueprint-grid-dense {
+    background-image:
+      linear-gradient(var(--grid) 0.5px, transparent 0.5px),
+      linear-gradient(90deg, var(--grid) 0.5px, transparent 0.5px);
+    background-size: 12px 12px;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--muted-foreground);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ─── Custom Component Styles ─── */
+@layer components {
+  /* Architectural card with precise border */
+  .card-architectural {
+    border: 1px solid var(--border);
+    background: var(--card);
+    position: relative;
+  }
+  .card-architectural::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 12px;
+    right: 12px;
+    height: 2px;
+    background: var(--safety);
+  }
+
+  /* Project ticket number style */
+  .project-ticket {
+    font-family: var(--font-code);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    color: var(--muted-foreground);
+  }
+
+  /* Status dot indicator */
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    position: relative;
+    display: inline-block;
+  }
+  .status-dot::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 1.5px solid currentColor;
+    opacity: 0.3;
+  }
+  .status-dot--active {
+    background-color: var(--success);
+    color: var(--success);
+  }
+  .status-dot--planning {
+    background-color: #3B82F6;
+    color: #3B82F6;
+  }
+  .status-dot--done {
+    background-color: var(--muted-foreground);
+    color: var(--muted-foreground);
+  }
+  .status-dot--critical {
+    background-color: var(--critical);
+    color: var(--critical);
+    animation: pulse-critical 2s ease-in-out infinite;
+  }
+
+  /* Progress bar – blueprint style */
+  .progress-blueprint {
+    height: 4px;
+    background: var(--grid);
+    position: relative;
+    overflow: hidden;
+  }
+  .progress-blueprint-fill {
+    height: 100%;
+    background: var(--safety);
+    transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Form input – architectural bottom-border style */
+  .input-architectural {
+    border: none;
+    border-bottom: 1.5px solid var(--border);
+    border-radius: 0;
+    background: transparent;
+    padding: 0.5rem 0;
+    font-size: 0.875rem;
+    transition: border-color 0.2s;
+  }
+  .input-architectural:focus {
+    border-bottom-color: var(--safety);
+    outline: none;
+  }
+  .input-architectural::placeholder {
+    color: var(--muted-foreground);
+    opacity: 0.6;
+  }
+
+  /* Label – architectural caps */
+  .label-architectural {
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+  }
+
+  /* Number display – large metric */
+  .metric-display {
+    font-family: var(--font-display);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  /* Shimmer skeleton with brand color */
+  .skeleton-brand {
+    background: linear-gradient(
+      90deg,
+      var(--muted) 25%,
+      var(--grid) 50%,
+      var(--muted) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+}
+
+/* ─── Animations ─── */
+@keyframes pulse-critical {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes count-up-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes draw-check {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-count-up {
+  animation: count-up-enter 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ─── MapLibre Overrides ─── */
+.maplibregl-popup-content {
+  background: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  padding: 0 !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12) !important;
+}
+.maplibregl-popup-tip {
+  border-top-color: var(--card) !important;
+}
+.maplibregl-ctrl-group {
+  background: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
 }
